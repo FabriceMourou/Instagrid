@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ThirstySoftRegular.otf">
+            <string>ThirstySoftRegular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KJ1-LI-JHS">
+                                <rect key="frame" x="129.5" y="383" width="155.5" height="130"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="749" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="D4d-c9-wVj">
+                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="60"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Instagrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRd-jG-qmc">
+                                        <rect key="frame" x="0.0" y="70" width="155.5" height="60"/>
+                                        <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="37"/>
+                                        <color key="textColor" red="0.1796776652" green="0.39941439029999998" blue="0.60002374650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oRd-jG-qmc" firstAttribute="centerX" secondItem="KJ1-LI-JHS" secondAttribute="centerX" id="00Z-Hh-cjS"/>
+                                    <constraint firstItem="D4d-c9-wVj" firstAttribute="centerX" secondItem="KJ1-LI-JHS" secondAttribute="centerX" id="uiw-f8-pf8"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="uiw-f8-pf8"/>
+                                        <exclude reference="00Z-Hh-cjS"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="uiw-f8-pf8"/>
+                                        <include reference="00Z-Hh-cjS"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KJ1-LI-JHS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="2uv-5Z-zF7"/>
+                            <constraint firstItem="KJ1-LI-JHS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Xkl-Cv-voK"/>
+                            <constraint firstItem="KJ1-LI-JHS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tR8-UM-vOi"/>
+                            <constraint firstItem="KJ1-LI-JHS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="v7N-Ic-pTJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2uv-5Z-zF7"/>
+                                <exclude reference="Xkl-Cv-voK"/>
+                                <exclude reference="tR8-UM-vOi"/>
+                                <exclude reference="v7N-Ic-pTJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="2uv-5Z-zF7"/>
+                                <include reference="Xkl-Cv-voK"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="tR8-UM-vOi"/>
+                                <include reference="v7N-Ic-pTJ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Icon" width="60" height="60"/>
+    </resources>
+</document>
