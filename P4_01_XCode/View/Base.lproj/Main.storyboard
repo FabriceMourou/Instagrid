@@ -109,8 +109,25 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pzk-le-Bd5">
                                 <rect key="frame" x="0.0" y="792" width="414" height="50"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="kXF-mQ-Reg"/>
                                     <constraint firstAttribute="height" constant="50" id="xn0-F6-ofY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kXF-mQ-Reg"/>
+                                        <exclude reference="xn0-F6-ofY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact" axis="vertical">
+                                    <mask key="constraints">
+                                        <include reference="kXF-mQ-Reg"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="xn0-F6-ofY"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Instagrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Las-M5-XLD">
                                 <rect key="frame" x="144" y="84" width="126" height="39"/>
@@ -138,16 +155,17 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.74226969480000005" green="0.83831804990000003" blue="0.88628327849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gHT-sV-C7L" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1W3-IN-RKM"/>
                             <constraint firstItem="gHT-sV-C7L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Vm-Hr-XjH"/>
                             <constraint firstItem="QOW-Om-Vuz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3nS-vx-Oic"/>
                             <constraint firstItem="Pzk-le-Bd5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7M7-Lv-Y5c"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pzk-le-Bd5" secondAttribute="trailing" id="7hB-yY-zyX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="U2D-fu-aB0" secondAttribute="bottom" constant="30" id="C8b-m1-5qx"/>
                             <constraint firstItem="U2D-fu-aB0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DNc-HA-VU3"/>
                             <constraint firstItem="Pzk-le-Bd5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EpP-YA-FIQ"/>
                             <constraint firstItem="QOW-Om-Vuz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="184.5" id="IL1-ZW-OSp"/>
+                            <constraint firstItem="Pzk-le-Bd5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PyD-rC-P2v"/>
                             <constraint firstItem="Las-M5-XLD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="UaT-pv-L9z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pzk-le-Bd5" secondAttribute="trailing" constant="20" id="dNk-Lj-a7M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pzk-le-Bd5" secondAttribute="bottom" constant="20" id="dar-3k-cdz"/>
@@ -157,14 +175,13 @@
                             <constraint firstItem="gHT-sV-C7L" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="jgD-2q-HFe">
                                 <variation key="widthClass=compact" constant="200"/>
                             </constraint>
-                            <constraint firstItem="Pzk-le-Bd5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lu9-ds-9fE"/>
                             <constraint firstItem="gHT-sV-C7L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="mPy-nT-zbF"/>
                             <constraint firstItem="U2D-fu-aB0" firstAttribute="leading" secondItem="gHT-sV-C7L" secondAttribute="trailing" constant="40" id="ol8-5f-2LL"/>
                             <constraint firstItem="U2D-fu-aB0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oqM-Vf-iXp"/>
                             <constraint firstItem="U2D-fu-aB0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ovR-Or-G5s"/>
                             <constraint firstItem="Las-M5-XLD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r5v-J2-bR9"/>
-                            <constraint firstItem="QOW-Om-Vuz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="s0j-jQ-3yS"/>
                             <constraint firstItem="U2D-fu-aB0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sz1-hd-yCR"/>
+                            <constraint firstItem="Pzk-le-Bd5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="wlu-aO-zYW"/>
                             <constraint firstItem="QOW-Om-Vuz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="81" id="yds-gH-lGi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -172,15 +189,15 @@
                             <mask key="constraints">
                                 <exclude reference="C8b-m1-5qx"/>
                                 <exclude reference="dNk-Lj-a7M"/>
-                                <exclude reference="3nS-vx-Oic"/>
-                                <exclude reference="s0j-jQ-3yS"/>
                                 <exclude reference="1W3-IN-RKM"/>
                                 <exclude reference="mPy-nT-zbF"/>
+                                <exclude reference="3nS-vx-Oic"/>
                                 <exclude reference="DNc-HA-VU3"/>
                                 <exclude reference="dfi-va-tdG"/>
                                 <exclude reference="ol8-5f-2LL"/>
                                 <exclude reference="oqM-Vf-iXp"/>
-                                <exclude reference="lu9-ds-9fE"/>
+                                <exclude reference="PyD-rC-P2v"/>
+                                <exclude reference="wlu-aO-zYW"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -188,12 +205,11 @@
                                 <include reference="C8b-m1-5qx"/>
                                 <include reference="dNk-Lj-a7M"/>
                                 <exclude reference="dar-3k-cdz"/>
-                                <include reference="3nS-vx-Oic"/>
-                                <include reference="s0j-jQ-3yS"/>
                                 <include reference="1W3-IN-RKM"/>
                                 <exclude reference="3Vm-Hr-XjH"/>
                                 <exclude reference="jgD-2q-HFe"/>
                                 <include reference="mPy-nT-zbF"/>
+                                <include reference="3nS-vx-Oic"/>
                                 <exclude reference="DNc-HA-VU3"/>
                                 <include reference="dfi-va-tdG"/>
                                 <exclude reference="ol8-5f-2LL"/>
@@ -201,19 +217,30 @@
                                 <exclude reference="ovR-Or-G5s"/>
                                 <exclude reference="sz1-hd-yCR"/>
                                 <exclude reference="7M7-Lv-Y5c"/>
-                                <include reference="lu9-ds-9fE"/>
+                                <exclude reference="EpP-YA-FIQ"/>
+                                <include reference="PyD-rC-P2v"/>
+                                <include reference="wlu-aO-zYW"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ATX-Gd-7Bs" appends="YES" id="agn-f4-nBT"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="arrowLeft" destination="GYy-kq-6KD" id="TpY-tb-ysZ"/>
                         <outlet property="arrowUp" destination="MPs-wz-SbJ" id="cXf-pf-aiG"/>
                         <outlet property="botStackView" destination="z85-zc-ab7" id="E49-jP-l9Z"/>
+                        <outlet property="gridView" destination="U2D-fu-aB0" id="1EV-ow-iyS"/>
                         <outlet property="layoutButtonsStackView" destination="Pzk-le-Bd5" id="iv8-kx-csf"/>
                         <outlet property="topStackView" destination="gKs-L2-PTi" id="mU0-ac-sCd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="ATX-Gd-7Bs">
+                    <connections>
+                        <action selector="didSwipeToShare:" destination="BYZ-38-t0r" id="LmV-4P-fOL"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.60714285714286" y="137.68115942028987"/>
         </scene>
