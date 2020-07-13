@@ -10,6 +10,11 @@ import UIKit
 
 
 class PhotoLayoutProvider {
+    
+    // MARK: - Internal
+    
+    // MARK: Properties - Internal
+    
     let layouts = [
         PhotoLayout(numberOfPhotosTop: 1, numberOfPhotosBot: 2),
         PhotoLayout(numberOfPhotosTop: 2, numberOfPhotosBot: 1),
