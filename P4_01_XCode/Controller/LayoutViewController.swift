@@ -14,15 +14,7 @@ class LayoutViewController: UIViewController {
     
     // MARK: Properties - Internal
     
-    @IBOutlet private weak var gridView: UIView!
-    @IBOutlet private weak var topStackView: UIStackView!
-    @IBOutlet private weak var botStackView: UIStackView!
-
-    @IBOutlet private weak var layoutButtonsStackView: UIStackView!
     
-    private var selectedButton: UIButton?
-    
-    private var photoLayoutButtons: [UIButton] = []
     
     
     // MARK: Methods - Internal
@@ -35,16 +27,50 @@ class LayoutViewController: UIViewController {
         super.viewDidLoad()
         
         setupLayoutButtons()
+
+
+        updateUIAccordingToOrientation()
     }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        coordinator.animate(alongsideTransition: updateUIAccordingToOrientation)
+    }
+    
+    
+    
+    
     
     // MARK: - Private
     
     // MARK: Properties - Private
     
     
+    @IBOutlet private weak var swipeToShareRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet private weak var shareArrowImageView: UIImageView!
+    @IBOutlet private weak var shareLabel: UILabel!
+    @IBOutlet private weak var gridView: UIView!
+    @IBOutlet private weak var topStackView: UIStackView!
+    @IBOutlet private weak var botStackView: UIStackView!
+    
+    @IBOutlet private weak var layoutButtonsStackView: UIStackView!
+    
+    private var selectedButton: UIButton?
+    
+    private var photoLayoutButtons: [UIButton] = []
     
     private let photoLayoutProvider = PhotoLayoutProvider()
     
+    private var windowInterfaceOrientation: UIInterfaceOrientation? {
+        if #available(iOS 13.0, *) {
+            return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
+        } else {
+            return UIApplication.shared.statusBarOrientation
+        }
+    }
+    
+    private var shareXTranslationValue: CGFloat = 0
+    private var shareYTranslationValue: CGFloat = 0
     
     
     // MARK: Methods - Private
@@ -61,7 +87,10 @@ class LayoutViewController: UIViewController {
     /// Animation pour le partage de la photo
     private func sharePhotoLayout() {
         UIView.animate(withDuration: 0.3) {
-            self.gridView.transform = CGAffineTransform(translationX: 0, y: -self.view.frame.height)
+            self.gridView.transform = CGAffineTransform(
+                translationX: self.shareXTranslationValue,
+                y: self.shareYTranslationValue
+            )
         }
         
         let image = renderGridViewAsImage()
@@ -78,7 +107,7 @@ class LayoutViewController: UIViewController {
     }
     
     
-    /// Création des boutons  pour choisir les differentes configurations
+    /// Affichage des boutons  pour choisir les differentes configurations
     private func setupLayoutButtons() {
         for index in 0..<photoLayoutProvider.layouts.count {
             let button = UIButton()
@@ -92,7 +121,7 @@ class LayoutViewController: UIViewController {
             photoLayoutButtons.append(button)
         }
     }
-    
+    /// Création de l'affichage des boutons, et de  l'image "Selected"
     private func setupLayoutButtonImage(button: UIButton, index: Int) {
         let buttonImage = UIImage(named: "Layout \(index + 1)")
         button.setBackgroundImage(buttonImage, for: .normal)
@@ -104,7 +133,7 @@ class LayoutViewController: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
     }
-    
+    /// Contraine pour les boutons
     private func setupConstraintOnLayoutButton(button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -120,7 +149,7 @@ class LayoutViewController: UIViewController {
         let layout = photoLayoutProvider.layouts[sender.tag]
         setupStackViewsFromLayout(photoLayout: layout)
     }
-    
+    ///
     private func selectPhotoLayoutButton(buttonIndexToSelect: Int) {
         for (index, button) in photoLayoutButtons.enumerated()  {
             button.isSelected = index == buttonIndexToSelect
@@ -180,6 +209,25 @@ class LayoutViewController: UIViewController {
         imagePickerController.delegate = self
         present(imagePickerController, animated: true)
         
+    }
+    
+    
+    private func updateUIAccordingToOrientation(context: UIViewControllerTransitionCoordinatorContext? = nil) {
+        guard let windowInterfaceOrientation = self.windowInterfaceOrientation else { return }
+        
+        if windowInterfaceOrientation.isLandscape {
+            shareLabel.text = "Swipe left to share"
+            shareArrowImageView.transform = CGAffineTransform(rotationAngle: -(.pi / 2))
+            swipeToShareRecognizer.direction = .left
+            shareXTranslationValue = -self.view.frame.width
+            shareYTranslationValue = 0
+        } else {
+            shareLabel.text = "Swipe up to share"
+            shareArrowImageView.transform = .identity
+            swipeToShareRecognizer.direction = .up
+            shareXTranslationValue = 0
+            shareYTranslationValue = -self.view.frame.height
+        }
     }
     
 }
