@@ -12,12 +12,12 @@
 		E21ABE0124A7480D00900F43 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E21ABDFF24A7480D00900F43 /* ThirstySoftRegular.otf */; };
 		E2A632D1249CFFC9008D7710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A632D0249CFFC9008D7710 /* AppDelegate.swift */; };
 		E2A632D3249CFFC9008D7710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A632D2249CFFC9008D7710 /* SceneDelegate.swift */; };
-		E2A632D5249CFFC9008D7710 /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A632D4249CFFC9008D7710 /* LayoutViewController.swift */; };
+		E2A632D5249CFFC9008D7710 /* PhotoLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A632D4249CFFC9008D7710 /* PhotoLayoutViewController.swift */; };
 		E2A632D8249CFFC9008D7710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A632D6249CFFC9008D7710 /* Main.storyboard */; };
 		E2A632DA249CFFCB008D7710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A632D9249CFFCB008D7710 /* Assets.xcassets */; };
 		E2A632DD249CFFCB008D7710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A632DB249CFFCB008D7710 /* LaunchScreen.storyboard */; };
 		E2BA83FC24AB334900C6635C /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA83FB24AB334900C6635C /* PhotoLayout.swift */; };
-		E2BA83FE24AB344600C6635C /* PhotoLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA83FD24AB344600C6635C /* PhotoLayoutProvider.swift */; };
+		E2BA83FE24AB344600C6635C /* PhotoLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA83FD24AB344600C6635C /* PhotoLayoutManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +27,13 @@
 		E2A632CD249CFFC9008D7710 /* P4_01_XCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4_01_XCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A632D0249CFFC9008D7710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2A632D2249CFFC9008D7710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E2A632D4249CFFC9008D7710 /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
+		E2A632D4249CFFC9008D7710 /* PhotoLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLayoutViewController.swift; sourceTree = "<group>"; };
 		E2A632D7249CFFC9008D7710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2A632D9249CFFCB008D7710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2A632DC249CFFCB008D7710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2A632DE249CFFCB008D7710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2BA83FB24AB334900C6635C /* PhotoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoLayout.swift; path = P4_01_XCode/View/PhotoLayout.swift; sourceTree = SOURCE_ROOT; };
-		E2BA83FD24AB344600C6635C /* PhotoLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLayoutProvider.swift; sourceTree = "<group>"; };
+		E2BA83FD24AB344600C6635C /* PhotoLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLayoutManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				E2BA83FB24AB334900C6635C /* PhotoLayout.swift */,
-				E2BA83FD24AB344600C6635C /* PhotoLayoutProvider.swift */,
+				E2BA83FD24AB344600C6635C /* PhotoLayoutManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 		E2A632E6249D001A008D7710 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E2A632D4249CFFC9008D7710 /* LayoutViewController.swift */,
+				E2A632D4249CFFC9008D7710 /* PhotoLayoutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,11 +196,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2BA83FC24AB334900C6635C /* PhotoLayout.swift in Sources */,
-				E2A632D5249CFFC9008D7710 /* LayoutViewController.swift in Sources */,
+				E2A632D5249CFFC9008D7710 /* PhotoLayoutViewController.swift in Sources */,
 				E2A632D1249CFFC9008D7710 /* AppDelegate.swift in Sources */,
 				E2A632D3249CFFC9008D7710 /* SceneDelegate.swift in Sources */,
 				E21A05C324BB0DBC00C46529 /* UIImage+Alpha.swift in Sources */,
-				E2BA83FE24AB344600C6635C /* PhotoLayoutProvider.swift in Sources */,
+				E2BA83FE24AB344600C6635C /* PhotoLayoutManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -330,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -347,6 +347,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B4GMB4889M;
 				INFOPLIST_FILE = P4_01_XCode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,7 +355,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabrice.mourou.P4-01-XCode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -365,6 +366,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B4GMB4889M;
 				INFOPLIST_FILE = P4_01_XCode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -372,7 +374,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabrice.mourou.P4-01-XCode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -17,4 +17,9 @@ struct PhotoLayout {
     
     let numberOfPhotosTop: Int
     let numberOfPhotosBot: Int
+    
+    
+    var totalNumberOfPhotos: Int {
+        numberOfPhotosTop + numberOfPhotosBot
+    }
 }
