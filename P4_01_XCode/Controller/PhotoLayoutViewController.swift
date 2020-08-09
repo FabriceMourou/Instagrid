@@ -10,45 +10,31 @@ import UIKit
 
 
 
-
-
-
-
-
 class PhotoLayoutViewController: UIViewController {
     
     // MARK: - Internal
     
     
     
-    
-    
-    
     // MARK: Methods - Internal
     
     
-    /// Gesture pour le partage de la photo
+    /// Gesture for sharing photo
     @IBAction func didSwipeToShare(_ sender: UISwipeGestureRecognizer) {
         sharePhotoLayout()
     }
     
-    @IBAction func didTapOnResetButton() {
-        photoLayoutProvider.resetLayout()
-    }
-    
+    /// Launch the application
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         setupLayoutButtons()
         updateUIAccordingToOrientation()
-        photoLayoutProvider.delegate = self
-        
-        photoLayoutProvider.selectedLayoutIndex = 1
-        changeResetButtonVisibilityState()
+        photoLayoutManager.delegate = self
     }
     
     
-    // Gestion de la transition du label "Swipe"
+    /// Transition of the "Swipe" label
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         coordinator.animate(alongsideTransition: updateUIAccordingToOrientation)
@@ -70,11 +56,10 @@ class PhotoLayoutViewController: UIViewController {
     @IBOutlet private weak var topStackView: UIStackView!
     @IBOutlet private weak var botStackView: UIStackView!
     @IBOutlet private weak var layoutButtonsStackView: UIStackView!
-    @IBOutlet private weak var resetButton: UIButton!
     
     private var selectedButtonIndex: Int?
     private var photoLayoutButtons: [UIButton] = []
-    private let photoLayoutProvider = PhotoLayoutManager()
+    private let photoLayoutManager = PhotoLayoutManager()
     private var photoButtons: [UIButton] = []
     
     private var windowInterfaceOrientation: UIInterfaceOrientation? {
@@ -91,7 +76,7 @@ class PhotoLayoutViewController: UIViewController {
     // MARK: Methods - Private
     
     
-    /// Transformation des calques en image pour effectuer le partage
+    /// Transform layers into images for sharing
     private func renderGridViewAsImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: gridView.bounds)
         return renderer.image { rendererContext in
@@ -99,7 +84,7 @@ class PhotoLayoutViewController: UIViewController {
         }
     }
     
-    /// Animation pour le partage de la photo
+    /// Animation for sharing photo
     private func sharePhotoLayout() {
         UIView.animate(withDuration: 0.3) {
             self.gridView.transform = CGAffineTransform(
@@ -122,22 +107,22 @@ class PhotoLayoutViewController: UIViewController {
     }
     
     
-    /// Affichage des boutons  pour choisir les differentes configurations
+    /// Display of buttons to choose the different configurations
     private func setupLayoutButtons() {
-        for index in 0..<photoLayoutProvider.layouts.count {
+        for index in 0..<photoLayoutManager.layouts.count {
             let button = UIButton()
             
             setupLayoutButtonImage(button: button, index: index)
             setupConstraintOnLayoutButton(button: button)
             
             button.tag = index
-            button.addTarget(self, action: #selector(didTapOnLayoutButton(sender:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(didTapOnPhotoButton(sender:)), for: .touchUpInside)
             layoutButtonsStackView.addArrangedSubview(button)
             photoLayoutButtons.append(button)
         }
     }
     
-    /// Création de l'affichage des boutons, et de  l'image "Selected"
+    /// Creation of the button display, and the "Selected" image
     private func setupLayoutButtonImage(button: UIButton, index: Int) {
         let buttonImage = UIImage(named: "Layout \(index + 1)")
         button.setBackgroundImage(buttonImage, for: .normal)
@@ -150,34 +135,33 @@ class PhotoLayoutViewController: UIViewController {
         button.contentHorizontalAlignment = .fill
     }
     
-    /// Contrainte pour les boutons
+    /// Constraint for Layout buttons
     private func setupConstraintOnLayoutButton(button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
     }
     
-    @objc private func didTapOnLayoutButton(sender: UIButton) {
-        photoLayoutProvider.selectedLayoutIndex = sender.tag
+    /// Layout button management
+    @objc private func didTapOnPhotoButton(sender: UIButton) {
+        photoLayoutManager.selectLayoutWithIndex(sender.tag)
     }
     
-    /// Création des calques
+    /// Creation of layers
     private func setupLayout() {
         selectPhotoLayoutButton()
         cleanLayout()
         setupStackViewsFromLayout()
-        updatePhotoButtonsWithModel()
+        updatePhotoButtons()
     }
-    /// Sélection du bouton  plus
+    /// Select the plus button
     private func selectPhotoLayoutButton() {
         for (index, button) in photoLayoutButtons.enumerated()  {
-            button.isSelected = index == photoLayoutProvider.selectedLayoutIndex
+            button.isSelected = index == photoLayoutManager.selectedLayoutIndex
         }
     }
     
     
-    /// RAZ de topStackView et de botStackView
+    /// Reset topStackView and botStackView
     private func cleanLayout() {
         photoButtons.removeAll()
         cleanStackView(stackView: topStackView)
@@ -185,7 +169,7 @@ class PhotoLayoutViewController: UIViewController {
     }
     
     
-    /// RAZ de Main Stack View
+    /// Main Stack View reset
     private func cleanStackView(stackView: UIStackView) {
         for view in stackView.subviews {
             view.removeFromSuperview()
@@ -193,15 +177,15 @@ class PhotoLayoutViewController: UIViewController {
     }
     
     
-    /// Détermine la combinaison de topStackView et de botStackView demandé
+    /// Determines the combination of topStackView and botStackView
     private func setupStackViewsFromLayout() {
-        let photoLayout = photoLayoutProvider.selectedLayout
+        guard let photoLayout = photoLayoutManager.selectedLayout else { return }
         addMultiplePhotoButtonsToStackView(amount: photoLayout.numberOfPhotosTop, stackView: topStackView)
         addMultiplePhotoButtonsToStackView(amount: photoLayout.numberOfPhotosBot, stackView: botStackView)
     }
     
     
-    /// AJoute un bouton à chaque Stack View
+    /// Add a button to each Stack View
     private func addMultiplePhotoButtonsToStackView(amount: Int, stackView: UIStackView) {
         for _ in 1...amount {
             addPhotoButtonToStackView(stackView: stackView)
@@ -210,7 +194,7 @@ class PhotoLayoutViewController: UIViewController {
     }
     
     
-    /// Création du PhotoButton Plus
+    /// Creation of PhotoButton Plus
     private func addPhotoButtonToStackView(stackView: UIStackView) {
         let plusButton = UIButton()
         plusButton.backgroundColor = .white
@@ -223,7 +207,7 @@ class PhotoLayoutViewController: UIViewController {
     }
     
     
-    /// Ouverture de la galerie photo
+    /// Opening the photo gallery
     @objc private func displayImagePickerController(sender: UIButton) {
         
         selectedButtonIndex = photoButtons.firstIndex(of: sender)
@@ -234,7 +218,7 @@ class PhotoLayoutViewController: UIViewController {
         
     }
     
-    /// Gestion des labels "Swipe" - Portrait ou Paysage
+    /// Management of "Swipe" labels - Portrait or Landscape
     private func updateUIAccordingToOrientation(context: UIViewControllerTransitionCoordinatorContext? = nil) {
         guard let windowInterfaceOrientation = self.windowInterfaceOrientation else { return }
         
@@ -253,34 +237,36 @@ class PhotoLayoutViewController: UIViewController {
         }
     }
     
-    
-    private func updatePhotoButtonsWithModel() {
+    /// display of the grid according to the chosen LayoutButton
+    private func updatePhotoButtons() {
         
         for (index, photoButton) in photoButtons.enumerated() {
-            let photo = UIImage(data: photoLayoutProvider.photos[index] ?? Data()) ?? UIImage(named: "Plus")
+            let photoData = photoLayoutManager.photos[index] ?? Data()
+            let photo = UIImage(data: photoData) ?? UIImage(named: "Plus")
             photoButton.setImage(photo, for: .normal)
         }
     }
-    
-    
-    private func changeResetButtonVisibilityState() {
-        resetButton.isHidden = !photoLayoutProvider.canBeReset
-    }
+
 }
 
 
 extension PhotoLayoutViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
-    /// Transformation de l'image de la galerie en UIImage
+    /// Transformation of gallery image to UIImage
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         guard
             let selectedImage = info[.originalImage] as? UIImage,
+            let selectedImageData = selectedImage.jpegData(compressionQuality: 1),
             let selectedButtonIndex = selectedButtonIndex
-            else { return }
-        //        selectedButton?.setImage(selectedImage, for: .normal)
-        photoLayoutProvider.photos[selectedButtonIndex] = selectedImage.jpegData(compressionQuality: 1)
-        
+            else {
+                dismiss(animated: true, completion: nil)
+                return
+        }
+       
+
+        photoLayoutManager.insertPhotoDataAtIndex(selectedButtonIndex, data: selectedImageData)
         
         dismiss(animated: true, completion: nil)
     }
@@ -288,17 +274,15 @@ extension PhotoLayoutViewController: UIImagePickerControllerDelegate, UINavigati
 }
 
 extension PhotoLayoutViewController: PhotoLayoutManagerDelegate{
+    
+    /// Grid display
     func didChangePhotoLayout() {
         setupLayout()
     }
     
+    /// Managing the display of photos
     func didChangePhotos() {
-        print(#function)
-        
-        updatePhotoButtonsWithModel()
-        
-        changeResetButtonVisibilityState()
-        
+        updatePhotoButtons()
     }
     
     

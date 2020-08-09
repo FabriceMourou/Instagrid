@@ -19,11 +19,6 @@ class PhotoLayoutManager {
     
     // MARK: - Internal
     
-    func resetLayout() {
-        for index in 0..<photos.count {
-            photos[index] = nil
-        }
-    }
     
     // MARK: Properties - Internal
     
@@ -39,8 +34,9 @@ class PhotoLayoutManager {
         }
     }
     
-    var selectedLayout: PhotoLayout {
-        layouts[selectedLayoutIndex]
+    var selectedLayout: PhotoLayout? {
+        guard selectedLayoutIndex >= 0 && selectedLayoutIndex < layouts.count else { return nil }
+        return layouts[selectedLayoutIndex]
     }
     
     var photos: [Data?] = [nil, nil, nil, nil] {
@@ -60,6 +56,24 @@ class PhotoLayoutManager {
         }
         
         return numberOfPhotosInPhotos > 0
+    }
+    
+    // MARK: Methods - Internal
+    
+    /// RAZ de la grille
+    func resetLayout() {
+        for index in 0..<photos.count {
+            photos[index] = nil
+        }
+    }
+    
+    /// Select the layout coressponding to the index
+    func selectLayoutWithIndex(_ index: Int) {
+        selectedLayoutIndex = index
+    }
+    
+    func insertPhotoDataAtIndex(_ index: Int, data: Data) {
+        photos[index] = data
     }
     
 }
