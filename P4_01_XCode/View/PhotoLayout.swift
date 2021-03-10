@@ -10,6 +10,16 @@ import UIKit
 
 
 struct PhotoLayout {
+    
+    // MARK: - Internal
+    
+    // MARK: Properties - Internal
+    
     let numberOfPhotosTop: Int
     let numberOfPhotosBot: Int
+    
+    
+    var totalNumberOfPhotos: Int {
+        numberOfPhotosTop + numberOfPhotosBot
+    }
 }
